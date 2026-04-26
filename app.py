@@ -11,7 +11,7 @@ llm = ChatMistralAI(model="mistral-small-2506")
 st.title("Chat Bot 🤖")
 st.markdown("Japanese-optimized AI chatbot 🇯🇵")
 
-# 🔥 Japonca optimize system prompt
+
 system_prompt = SystemMessage(content="""
 You are a professional Japanese assistant.
 
@@ -30,7 +30,7 @@ If the user writes in English, still respond in Japanese unless explicitly asked
 if "messages" not in st.session_state:
     st.session_state.messages = [system_prompt]
 
-# geçmiş mesajları göster
+
 for message in st.session_state.messages:
     if isinstance(message, HumanMessage):
         st.chat_message("user").markdown(message.content)
@@ -45,7 +45,7 @@ if query:
     st.session_state.messages.append(human_msg)
     st.chat_message("user").markdown(query)
 
-    # 🔥 tüm conversation + system prompt modele gidiyor
+
     res = llm.invoke(st.session_state.messages)
 
     ai_msg = AIMessage(content=res.content)
